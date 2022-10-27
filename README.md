@@ -66,11 +66,34 @@ Nessa seção, criamos um SparkSession e transformamos a dataframe de pandas em 
 ## **Various Models**
 Essa seção está dividida em três, uma para cada modelo. As três seções sao quase identicas (a diferença é o dataframe inicial que usamos para treino e teste). Começamos usando a função `vectorAssemble` na nossa dataframe de spark, para combinar as colunas necessárias para o nosso dataframe. Depois desse passo, dividimos o df em treino e teste usando a função `splitDatasets`. Finalmente, criamos um modelo usando o set de treino usando a função `createLinearRegModel`.
 
-# Vector Assembler
+O próximo passo é criar um objeto LinearRegressionSummary usando o metodo `evaluate()` do modelo. Com esse summary, podemos ver as predições do modelo e fazer uma análize inicial (visual) da diferença das predições com o alvo. Esse summary é feito com a data de teste.
+
+Depois disso, podemos checar as métricas de performance do modelo, `r-squared` e `RMSE`. Verificamos as métricas do treino e do teste do modelo. 
+
+## **Graficos / Resultados**
+Finalmente, podemos fazer gráficos dos três modelos e analizar os resultados das métricas de performance. Usamos o module `seaborn`, já que podemos criar gráficos usando pandas dataframes. Transformamos o objeto LinearRegressionSummary em uma dataframe de pandas, e fazemos o gráfico usando `regplot`.
+
+Pelos nossos resultados depois de rodar a data de treino e teste em todos os modelos, podemos ver que o modelo com melhor fit seria o modelo que usa VectorAssemble para combinar todas as variaveis. Ele tem o maior valor de r ao quadrado, e o menor valor do erro quadratico medio. Alem disso, podemos ver com os graficos que esse modelo tem o melhor ajuste.
+
+
+
+# Referencias
+## **Vector Assembler**
 https://spark.apache.org/docs/latest/ml-features#vectorassembler \
 https://spark.apache.org/docs/3.1.3/api/python/reference/api/pyspark.ml.feature.VectorAssembler.html
 
-# Linear Regression
+## **Linear Regression**
 https://spark.apache.org/docs/latest/ml-classification-regression.html#linear-regression
 https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.regression.LinearRegression.html#pyspark.ml.regression.LinearRegression
 https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.regression.LinearRegressionTrainingSummary.html
+
+# Cronograma
+20/10 ao 24/10 --> Pesquisa inicial sobre Docker e regressão linear.
+ 
+25/10 --> Criação do repositório em Git, e programação inicial. Nesse ponto, eu fiz as partes de data loading e exploration.
+
+26/10 --> Framework do README file (19:10), inclusão do PySpark no código fonte (19:30), modelo com vectorassembler (21:50), modelos de RM e LSTAT (22:30).
+
+27/10 --> Finalização dos modelos e comentários (madrugada). Merging do branch de código para o main. Adesão ao Docker.
+
+27/10 --> Finalização do README (documentação, cronograma, referencias) (manhã).
